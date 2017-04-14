@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to the events</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='materialize/css/materialize.css')}}">
+	<script type="text/javascript" src="{{url_for('static',filename='materialize/js/materialize.js')}}"></script>
+	<link href="../static/css/materialize.min.css" rel="stylesheet">
+
+	<style>
+		#body{
+			background-color: lightblue;
+		}
+
+	</style>
+
+	
+</head>
+<body id="body">
+
+
+
+
+<nav style="background-color: navy;color: floralwhite">
+	<div class="nav-wrapper">
+		<a href="#" class="brand-logo right">Welcome {{user}}</a>
+		<ul id="nav-mobile" class="left hide-on-med-and-down">
+			<li ><a href="http://localhost:5000/home">Home</a></li>
+			<li><a href="http://localhost:5000/createevent">Create Event</a></li>
+			<li><a href="http://localhost:5000/seeyourevents">See your events</a></li>
+			<li><a href="http://localhost:5000/sponsors">Sponsors</a></li>
+			<li><a href="#">Contact Us</a></li>
+		</ul>
+	</div>
+</nav>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				{% for i in us%}
+				<div class="col s4">
+					<div class="card hoverable">
+						<div class="card-image waves-effect waves-block waves-light orange lighten-2">
+							<img class="activator" src="http://www.bloggingtips.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg">
+						</div>
+						<div class="card-content">
+							<span class="card-title activator grey-text text-darken-4"><b>{{i.e_name}}</b></span>
+							<center><p><a href={{url_for('template',eid=i.event_id)}}>See More..</a></p></center>
+						</div>
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+							<p>{{i.description}}</p>
+						</div>
+					</div>
+				</div>
+				{%endfor%}
+			</div>
+		</div>
+
+	</body>
+	</html>

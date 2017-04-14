@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sponsors</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet"
+</head>
+<body>
+<nav class="navbar navbar-fixed-top" style="background-color: navy;color: floralwhite">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">EventPlaza</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="http://localhost:5000/home">Home</a></li>
+			<li><a href="http://localhost:5000/home">Events</a></li> <!--Broken-->
+			<li><a href="http://localhost:5000/sponsors">Sponsors</a></li>
+			<li><a href="#">Contact Us</a></li>
+		</ul>
+	</div>
+</nav>
+
+<div class="jumbotron" style="background-color: maroon;color: floralwhite;height:250px;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="text-center">
+				<h1 class="h1">Event Plaza</h1>
+			</div>
+			<div class="text-center" style="color:cornflowerblue">
+				<div id="typedtext">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-sm-offset-3">
+		<h2 class="h2">Sponsors</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-offset-2">
+		{% for i in us %}
+
+
+		<div class = "media">
+			<a class = "pull-left" href = "#">
+				<img class = "media-object" src = "../static/images/images.png" alt = "Media Object">
+			</a>
+
+			<div class = "media-body">
+				<h4 class = "media-heading"><h1>{{i.s_name}}</h1></h4>
+				Get your event sponsored by the very best companies and accelerators.
+			</div>
+
+		</div>
+
+		{%endfor%}
+
+
+	</div>
+
+</div>
+
+
+<br>
+<br>
+<br>
+<footer>
+	<div class="jumbotron" style="background-color: lightgrey">
+		<div class="text-center">
+			&copy;EventPlaza 2017
+		</div>
+	</div>
+</footer>
+
+
+</body>
+</html>

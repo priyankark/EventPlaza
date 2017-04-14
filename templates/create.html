@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+	<title>create event</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-fixed-top" style="background-color: navy;color: floralwhite">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">EventPlaza</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="http://localhost:5000/home">Home</a></li>
+			<li><a href="http://localhost:5000/events">Events</a></li>
+			<li><a href="http://localhost:5000/sponsors">Sponsors</a></li>
+			<li><a href="#">Contact Us</a></li>
+		</ul>
+	</div>
+</nav>
+
+<div class="jumbotron" style="background-color: maroon;color: floralwhite;height:250px;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="text-center">
+				<h1 class="h1">Event Plaza</h1>
+			</div>
+			<div class="text-center" style="color:cornflowerblue">
+				<div id="typedtext">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-sm-offset-3">
+		<h2 class="h2">Host your event details</h2>
+	</div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+
+<div class="row">
+<div class="col-sm-offset-3 col-sm-9">
+<form action="http://localhost:5000/creating" method="post" class="form-horizontal">
+	<div class="form-group">
+		<div class="col-sm-2">
+		<label for="e_name" class="control-label">Event name</label>
+			</div>
+		<div class="col-sm-8">
+		<input type="text" name="e_name" placeholder="event name" class="form-control" id="e_name">
+			</div>
+		<!--<label for="e_name">Event Name</label> -->
+	</div>
+	<div class="form-group">
+		<div class="col-sm-2">
+		<label for="description" class="control-label">Description</label>
+			</div>
+		<div class="col-sm-8">
+		<input type="textarea"  name="description" placeholder="description" id="description" class="form-control" rows="6" cols="50">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-2">
+		<label for="venue" class="control-label">Venue</label>
+			</div>
+		<div class="col-sm-8">
+		<input type="text" name="venue" placeholder="venue" class="form-control" id="venue">
+			</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-2">
+		<label for="city" class="control-label">City</label>
+		</div>
+		<div class="col-sm-8">
+		<input type="text" name="city" placeholder="city" id="city">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-2">
+
+		<label for="pin" class="control-label">Pin</label>
+			</div>
+		<div class="col-sm-8">
+		<input type="number" name="pin" placeholder="pin" id="pin">
+			</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-2">
+		<label for="time" class="control-label">Time</label>
+			</div>
+		<div class="col-sm-8">
+		<input type="text" name="time" placeholder="time" id="time">
+			</div>
+	</div>
+
+	<!--<div class="input-group">
+		<label for="date" class="control-label">Date</label>
+		<input type="date" name="date" placeholder="date" id="date">
+	</div> -->
+
+	<div class="form-group">
+		<div class="col-sm-2">
+		<label for="date" class="control-label">Date</label>
+			</div>
+		<div class="col-sm-3">
+			<div class="input-group date" data-provide="datepicker">
+				<input type="date" class="form-control" name="date" id="date">
+				<div class="input-group-addon">
+					<span class="glyphicon glyphicon-th"></span>
+				</div>
+			</div>
+
+		</div>
+		</div>
+
+
+	<div class="form-group">
+		<div class="col-sm-2">
+		<label for="sponsor" class="control-label">Sponsor</label> <br>
+			</div>
+		<div class="col-sm-8">
+		<select name="sponsor" id="sponsor" class="selectpicker" multiple >
+			{% for i in us %}
+				<option value={{i.s_id}}> {{i.s_name}} </option>
+			{% endfor %}
+		</select>
+			</div>
+	</div>
+	<br>
+	<br>
+	<div class="form-group">
+		<div class="col-sm-offset-2">
+	<button type="submit" name="create" class="btn  btn-sm btn-success" id="Create" value="Submit">Submit </button>
+			</div>
+	</div>
+
+</form>
+
+</div>
+	</div>
+
+<footer class="jumbotron">
+	<div class="text-center">
+		&copy;EventPlaza!
+	</div>
+
+</footer>
+
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script>
+	$(function () {
+		var bindDatePicker = function() {
+			$(".date").datetimepicker({
+				format:'YYYY-MM-DD',
+				icons: {
+					time: "fa fa-clock-o",
+					date: "fa fa-calendar",
+					up: "fa fa-arrow-up",
+					down: "fa fa-arrow-down"
+				}
+			}).find('input:first').on("blur",function () {
+				// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+				// update the format if it's yyyy-mm-dd
+				var date = parseDate($(this).val());
+
+				if (! isValidDate(date)) {
+					//create date based on momentjs (we have that)
+					date = moment().format('YYYY-MM-DD');
+				}
+
+				$(this).val(date);
+			});
+		}
+
+		var isValidDate = function(value, format) {
+			format = format || false;
+			// lets parse the date to the best of our knowledge
+			if (format) {
+				value = parseDate(value);
+			}
+
+			var timestamp = Date.parse(value);
+
+			return isNaN(timestamp) == false;
+		}
+
+		var parseDate = function(value) {
+			var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+			if (m)
+				value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+			return value;
+		}
+
+		bindDatePicker();
+	});
+</script>
+
+
+</body>
+</html>

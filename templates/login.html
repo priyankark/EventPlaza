@@ -1,0 +1,111 @@
+<html>
+<head>
+	<title>Login</title>
+	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+		body {
+			background-color:#fff;
+			-webkit-font-smoothing: antialiased;
+			font: normal 14px Roboto,arial,sans-serif;
+		}
+
+		.container {
+			padding: 25px;
+			position: fixed;
+		}
+
+		.form-login {
+			background-color: #EDEDED;
+			padding-top: 10px;
+			padding-bottom: 20px;
+			padding-left: 20px;
+			padding-right: 20px;
+			border-radius: 15px;
+			border-color:#d2d2d2;
+			border-width: 5px;
+			box-shadow:0 1px 0 #cfcfcf;
+		}
+
+		h4 {
+			border:0 solid #fff;
+			border-bottom-width:1px;
+			padding-bottom:10px;
+			text-align: center;
+		}
+
+		.form-control {
+			border-radius: 10px;
+		}
+
+		.wrapper {
+			text-align: center;
+		}
+
+	</style>
+</head>
+
+<nav class="navbar navbar-fixed-top" style="background-color: navy;color: floralwhite">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">EventPlaza</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="http://localhost:5000/home">Home</a></li>
+			<li><a href="http://localhost:5000/login">Login</a></li>
+			<li><a href="http://localhost:5000/sponsors">Sponsors</a></li>
+			<li><a href="#">Contact Us</a></li>
+		</ul>
+	</div>
+</nav>
+
+
+
+
+
+<div class="jumbotron" style="background-color: maroon;color: floralwhite;height:250px;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="text-center">
+				<h1 class="h1">Event Plaza</h1>
+			</div>
+			<div class="text-center" style="color:cornflowerblue">
+				<div id="typedtext">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<br>
+<br>
+<div class="container">
+<div class="row">
+	<div class="col-md-offset-5 col-md-3">
+		<div class="form-login">
+			<h4>Welcome back.</h4>
+			<form method="POST" action="http://localhost:5000/logging">
+			<input type="text" id="userName" class="form-control input-sm chat-input" name="user" placeholder="username" />
+			</br>
+			<input type="password" id="userPassword" class="form-control input-sm chat-input" name="pass" placeholder="password" />
+			</br>
+			<div class="wrapper">
+            <span class="group-btn">
+                <input type="submit" class="btn btn-primary btn-md" value="Login"> <i class="fa fa-sign-in"></i></>
+            </span>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+
+</html>
